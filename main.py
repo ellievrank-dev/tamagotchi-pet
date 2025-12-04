@@ -1,5 +1,6 @@
 import time
 import sys
+import os
 
 class Bear:
     def __init__(self, hunger, happiness, name) -> None:
@@ -38,6 +39,20 @@ class Bear:
     def play(self):
         pass
 
+def redraw_screen(bear):
+    os.system("clear")
+    print(f"{bear.name}")
+    print(f"Hunger: {bear.hunger}")
+    print(f"Happiness: {bear.happiness}")
+    print(bear.get_image())
+    print("---------------------------")
+    print("What do you want to do?")
+    print("[1] Feed")
+    print("[2] Play")
+    print("[3] Do nothing")
+    print("[4] Quit")
+    print("---------------------------")
+
 bear_name = input("Choose a name for your bear: ")
 
 bear = Bear(100, 100, bear_name)
@@ -49,11 +64,7 @@ def play(self):
     self.happiness = min(self.happiness + 20, 100)
 
 while True:
-    print("What do you want to do?")
-    print("[1] Feed")
-    print("[2] Play")
-    print("[3] Do nothing")
-    print("[4] Quit")
+    redraw_screen(bear)
 
     choice = input("Choose: ")
 
