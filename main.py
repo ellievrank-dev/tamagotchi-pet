@@ -1,5 +1,6 @@
 import time
 import sys
+
 class Bear:
     def __init__(self, hunger, happiness, name) -> None:
         self.hunger = hunger
@@ -13,6 +14,10 @@ class Bear:
     def update(self):
         self.hunger -= 5
         self.happiness -= 3
+        
+        self.hunger = max(self.hunger, 0)
+        self.happiness = max(self.happiness, 0)
+
 
     def get_image(self):
         resting = "ʕ •ᴥ•ʔ"
@@ -37,6 +42,11 @@ bear_name = input("Choose a name for your bear: ")
 
 bear = Bear(100, 100, bear_name)
 
+def feed(self):
+    self.hunger = min(self.hunger + 20, 100)
+
+def play(self):
+    self.happiness = min(self.happiness + 20, 100)
 
 while True:
     print("What do you want to do?")
@@ -58,3 +68,4 @@ while True:
     time.sleep(1)
 
 
+#TODO: define feed and play. figure out how to have a global print so that the output constantly stays at top
