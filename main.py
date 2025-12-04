@@ -33,39 +33,40 @@ class Bear:
         else:
             output = resting
         return output
+   
     def feed(self):
-        pass
+        self.hunger = min(self.hunger + 30, 100)
 
     def play(self):
-        pass
+        self.happiness = min(self.happiness + 25, 100)
 
-def redraw_screen(bear):
+def redraw_screen(bear, show_menu: bool):
     os.system("clear")
+
     print(f"{bear.name}")
-    print(f"Hunger: {bear.hunger}")
+    print(f"Hunger:    {bear.hunger}")
     print(f"Happiness: {bear.happiness}")
     print(bear.get_image())
     print("---------------------------")
-    print("What do you want to do?")
-    print("[1] Feed")
-    print("[2] Play")
-    print("[3] Do nothing")
-    print("[4] Quit")
-    print("---------------------------")
+
+    if show_menu:
+        print("What do you want to do?")
+        print("[1] Feed")
+        print("[2] Play")
+        print("[3] Do nothing")
+        print("[4] Quit")
+        print("---------------------------")
 
 bear_name = input("Choose a name for your bear: ")
-
 bear = Bear(100, 100, bear_name)
 
-def feed(self):
-    self.hunger = min(self.hunger + 20, 100)
-
-def play(self):
-    self.happiness = min(self.happiness + 20, 100)
-
 while True:
-    redraw_screen(bear)
-
+    for _ in range(5):
+        bear.update()
+        redraw_screen(bear, show_menu=False)
+        time.sleep(1)
+    
+    redraw_screen(bear, show_menu=True)
     choice = input("Choose: ")
 
     if choice == "1":
@@ -73,10 +74,4 @@ while True:
     elif choice == "2":
         bear.play()
     elif choice == "4":
-     sys.exit(0)
-    bear.update()
-    bear.display()
-    time.sleep(1)
-
-
-#TODO: define feed and play. figure out how to have a global print so that the output constantly stays at top
+        sys.exit(0)
