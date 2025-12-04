@@ -24,15 +24,9 @@ class Bear:
         resting = "ʕ •ᴥ•ʔ"
         sad = "ʕ ´•̥̥̥ ᴥ•̥̥̥`ʔ"    
         output = ""
-        if self.hunger <= 50:
-             output = sad
-        else:
-             output = resting
-        if self.happiness <= 50:
-            output = sad
-        else:
-            output = resting
-        return output
+        if self.hunger <= 50 or self.happiness <= 50:
+            return sad
+        return resting
    
     def feed(self):
         self.hunger = min(self.hunger + 30, 100)
